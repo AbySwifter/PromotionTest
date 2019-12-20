@@ -7,13 +7,21 @@
 //
 
 #import "KKAppDelegate.h"
+#import <KKPromotion/KKPromotion.h>
 
 @implementation KKAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    [[KKPromotion sharedInstance] promotionLaunchWithCompletion:^(BOOL success, BOOL isFirst) {
+        NSLog(@"上传信息：%d, 是否第一次：%d", success, isFirst);
+    }];
     return YES;
+}
+
+- (void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken{
+    [[KKPromotion sharedInstance] updatePushToken:deviceToken];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

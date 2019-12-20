@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="whP-gf-Uak">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="whP-gf-Uak">
+    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -20,7 +18,86 @@
                     <view key="view" contentMode="scaleToFill" id="TpU-gO-2f1">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4VM-fl-WbZ">
+                                <rect key="frame" x="15" y="182" width="345" height="50"/>
+                                <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="Ten-3O-sh9"/>
+                                </constraints>
+                                <state key="normal" title="检查注册状态"/>
+                                <connections>
+                                    <action selector="registerAction:" destination="whP-gf-Uak" eventType="touchUpInside" id="Iof-R4-syB"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2y2-XJ-bzV">
+                                <rect key="frame" x="15" y="256" width="345" height="50"/>
+                                <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="1SA-7o-Jdu"/>
+                                </constraints>
+                                <state key="normal" title="打开通知权限"/>
+                                <connections>
+                                    <action selector="openNotification:" destination="whP-gf-Uak" eventType="touchUpInside" id="ye4-Vv-YEc"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zgy-2k-r96">
+                                <rect key="frame" x="15" y="332" width="345" height="50"/>
+                                <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="cU2-1s-0TK"/>
+                                </constraints>
+                                <state key="normal" title="设置用户付费属性"/>
+                                <connections>
+                                    <action selector="setUserPayInfomation:" destination="whP-gf-Uak" eventType="touchUpInside" id="1NF-1O-NsN"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W0z-ZI-m9A">
+                                <rect key="frame" x="15" y="409" width="345" height="50"/>
+                                <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="p2N-0G-j2b"/>
+                                </constraints>
+                                <state key="normal" title="设置用户级别"/>
+                                <connections>
+                                    <action selector="setUserLevel:" destination="whP-gf-Uak" eventType="touchUpInside" id="6fg-B8-cZl"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7o6-AF-jCx">
+                                <rect key="frame" x="15" y="485" width="345" height="50"/>
+                                <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="hIs-4d-yeX"/>
+                                </constraints>
+                                <state key="normal" title="请求自推广信息"/>
+                                <connections>
+                                    <action selector="requestPromotionInfo:" destination="whP-gf-Uak" eventType="touchUpInside" id="YPw-Kq-TSP"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="4VM-fl-WbZ" firstAttribute="leading" secondItem="TpU-gO-2f1" secondAttribute="leading" constant="15" id="4iN-eK-LOp"/>
+                            <constraint firstItem="2y2-XJ-bzV" firstAttribute="top" secondItem="4VM-fl-WbZ" secondAttribute="bottom" constant="24" id="8Et-Rx-wJC"/>
+                            <constraint firstItem="Zgy-2k-r96" firstAttribute="leading" secondItem="TpU-gO-2f1" secondAttribute="leading" constant="15" id="9HW-Aw-dSZ"/>
+                            <constraint firstAttribute="trailing" secondItem="4VM-fl-WbZ" secondAttribute="trailing" constant="15" id="HR4-V6-8xB"/>
+                            <constraint firstItem="2y2-XJ-bzV" firstAttribute="centerX" secondItem="TpU-gO-2f1" secondAttribute="centerX" id="HXh-k5-ca7"/>
+                            <constraint firstItem="4VM-fl-WbZ" firstAttribute="centerX" secondItem="TpU-gO-2f1" secondAttribute="centerX" id="JEz-wh-gmt"/>
+                            <constraint firstItem="7o6-AF-jCx" firstAttribute="centerX" secondItem="W0z-ZI-m9A" secondAttribute="centerX" id="OjB-nH-y48"/>
+                            <constraint firstItem="Zgy-2k-r96" firstAttribute="top" secondItem="2y2-XJ-bzV" secondAttribute="bottom" constant="26" id="Rp6-h3-9nQ"/>
+                            <constraint firstAttribute="trailing" secondItem="Zgy-2k-r96" secondAttribute="trailing" constant="15" id="SJD-EO-zDa"/>
+                            <constraint firstItem="2y2-XJ-bzV" firstAttribute="leading" secondItem="TpU-gO-2f1" secondAttribute="leading" constant="15" id="UuY-Hy-5Cq"/>
+                            <constraint firstItem="7o6-AF-jCx" firstAttribute="width" secondItem="W0z-ZI-m9A" secondAttribute="width" id="V97-b8-EYl"/>
+                            <constraint firstItem="W0z-ZI-m9A" firstAttribute="leading" secondItem="TpU-gO-2f1" secondAttribute="leading" constant="15" id="YvQ-No-FR0"/>
+                            <constraint firstAttribute="trailing" secondItem="W0z-ZI-m9A" secondAttribute="trailing" constant="15" id="chI-31-waC"/>
+                            <constraint firstItem="7o6-AF-jCx" firstAttribute="top" secondItem="W0z-ZI-m9A" secondAttribute="bottom" constant="26" id="cqN-Vi-C3l"/>
+                            <constraint firstItem="Zgy-2k-r96" firstAttribute="centerX" secondItem="TpU-gO-2f1" secondAttribute="centerX" id="n7M-6k-cHq"/>
+                            <constraint firstItem="4VM-fl-WbZ" firstAttribute="top" secondItem="uEw-UM-LJ8" secondAttribute="bottom" constant="182" id="nKs-GR-P2E"/>
+                            <constraint firstItem="W0z-ZI-m9A" firstAttribute="top" secondItem="Zgy-2k-r96" secondAttribute="bottom" constant="27" id="nqM-qA-3X4"/>
+                            <constraint firstItem="7o6-AF-jCx" firstAttribute="height" secondItem="W0z-ZI-m9A" secondAttribute="height" id="qHo-WA-0kJ"/>
+                            <constraint firstItem="W0z-ZI-m9A" firstAttribute="centerX" secondItem="TpU-gO-2f1" secondAttribute="centerX" id="tVR-yO-rtL"/>
+                            <constraint firstAttribute="trailing" secondItem="2y2-XJ-bzV" secondAttribute="trailing" constant="15" id="zG5-vo-pR2"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tc2-Qw-aMS" userLabel="First Responder" sceneMemberID="firstResponder"/>
