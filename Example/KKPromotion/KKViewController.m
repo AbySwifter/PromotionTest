@@ -29,7 +29,9 @@
 }
 
 - (IBAction)registerAction:(UIButton *)sender {
-    
+    [[KKPromotion sharedInstance] promotionLaunchWithCompletion:^(BOOL success, BOOL isFirst) {
+        NSLog(@"上传信息：%d, 是否第一次：%d", success, isFirst);
+    }];
 }
 
 

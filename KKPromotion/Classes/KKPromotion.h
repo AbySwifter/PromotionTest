@@ -23,6 +23,10 @@ NS_SWIFT_NAME(Promotion)
 
 @property(nonatomic, strong, readonly, nullable)NSString* currentToken;
 
+/// 设置后台应用ID
+/// @param appKey 应用ID
++ (void)setAppKey:(NSString *)appKey;
+
 /// 获取实例对象
 + (instancetype)sharedInstance;
 

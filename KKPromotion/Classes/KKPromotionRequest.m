@@ -133,7 +133,7 @@ NSString * AFQueryStringFromParameters(NSDictionary *parameters) {
 @implementation KKPromotionRequest
 
 -(NSSet<NSString *> *)HTTPMethodsEncodingParametersInURI{
-    return [[NSSet alloc] initWithArray:@[@"GET", @"POST", @"DELETE"]];
+    return [[NSSet alloc] initWithArray:@[@"GET"]];
 }
 
 -(NSURLSession *)session{

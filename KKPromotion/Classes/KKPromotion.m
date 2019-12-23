@@ -24,9 +24,15 @@
 
 @property(nonatomic, assign)BOOL isFirstRegister;
 
+@property(nonatomic, strong)NSString* appKey;
+
 @end
 
 @implementation KKPromotion
+
++ (void)setAppKey:(NSString *)appKey{
+    [KKPromotion sharedInstance].appKey =  appKey;
+}
 
 #pragma mark - 初始化相关方法
 + (instancetype)sharedInstance{
@@ -318,6 +324,10 @@
     // 当前设备idfa
     NSString* phoneIdentifier = [KKPromotion getPhoneIdentifier];
     [params setObject:phoneIdentifier forKey:PROMOTION_PHONE_ID_KEY];
+    // 设置AppID
+    if (self.appKey) {
+        [params setObject:self.appKey forKey:@"app_key"];
+    }
     return params;
 }
 
