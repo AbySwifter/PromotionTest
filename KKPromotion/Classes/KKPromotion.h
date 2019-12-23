@@ -27,6 +27,9 @@ NS_SWIFT_NAME(Promotion)
 /// @param appKey 应用ID
 + (void)setAppKey:(NSString *)appKey;
 
+/// 打开sandbox环境
++ (void)enableDebug:(BOOL)isDebug;
+
 /// 获取实例对象
 + (instancetype)sharedInstance;
 

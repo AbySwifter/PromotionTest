@@ -13,6 +13,10 @@
 
 #define PROMOTION_TOKEN_KEY @"PROMOTION_TOKEN_KEY"
 #define PROMOTION_TOKEN_EXPIRED_KEY @"TOKEN_EXPIRED_KEY"
+#define PROMOTION_APP_KEY @"app_key"
+#define PROMOTION_DEBUG_KEY @"is_debug"
+
+#define PROMOTION_DEBUG_STORE_KEY @"LAST_DEBUG_STATE"
 
 @interface KKPromotion ()
 
@@ -25,6 +29,7 @@
 @property(nonatomic, assign)BOOL isFirstRegister;
 
 @property(nonatomic, strong)NSString* appKey;
+@property(nonatomic, assign)BOOL isDebug;
 
 @end
 
@@ -34,12 +39,27 @@
     [KKPromotion sharedInstance].appKey =  appKey;
 }
 
++ (void)enableDebug:(BOOL)isDebug{
+#if DEBUG
+    [KKPromotion sharedInstance].isDebug = isDebug;
+    BOOL lastStatus = [[NSUserDefaults standardUserDefaults] boolForKey:PROMOTION_DEBUG_STORE_KEY];
+    // 如果不相等，说明测试环境下，开发者手动更改了模式。需要重新注册用户。
+    if (lastStatus != isDebug) {
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:PROMOTION_TOKEN_KEY];
+        [[NSUserDefaults standardUserDefaults] setBool:isDebug forKey:PROMOTION_DEBUG_STORE_KEY];
+    }
+#endif
+}
+
 #pragma mark - 初始化相关方法
 + (instancetype)sharedInstance{
     static KKPromotion* manager = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         manager = [[KKPromotion alloc] init];
+#if DEBUG
+        manager.isDebug =  YES;
+#endif
     });
     return manager;
 }
@@ -326,8 +346,9 @@
     [params setObject:phoneIdentifier forKey:PROMOTION_PHONE_ID_KEY];
     // 设置AppID
     if (self.appKey) {
-        [params setObject:self.appKey forKey:@"app_key"];
+        [params setObject:self.appKey forKey:PROMOTION_APP_KEY];
     }
+    [params setObject:@(self.isDebug) forKey:PROMOTION_DEBUG_KEY];
     return params;
 }
 
@@ -342,14 +363,14 @@
 
 + (NSString *)getCountryName{
     // iOS 获取设备当前地区的代码
-    NSString *localeIdentifier = [[NSLocale currentLocale] objectForKey:NSLocaleIdentifier];
+    NSString *localeIdentifier = [[NSLocale currentLocale] objectForKey:NSLocaleCountryCode];
     return localeIdentifier;
 }
 
 + (NSString *)getPreferredLanguage{
     // iOS 获取设备当前语言的代码
-    NSString *preferredLanguage = [[[NSBundle mainBundle] preferredLocalizations] firstObject];
-    return preferredLanguage;
+    NSString *preferredLanguageCode = [[NSLocale preferredLanguages] firstObject];
+    return preferredLanguageCode;
 }
 
 /// 获取系统名
