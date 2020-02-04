@@ -14,6 +14,9 @@
 		DD838C9F23E9441D00F2F688 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD838C9E23E9441D00F2F688 /* Assets.xcassets */; };
 		DD838CA223E9441D00F2F688 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD838CA023E9441D00F2F688 /* LaunchScreen.storyboard */; };
 		DD838CA523E9441D00F2F688 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DD838CA423E9441D00F2F688 /* main.m */; };
+		DD838CCE23E9692900F2F688 /* GPPSimulateIDFA.m in Sources */ = {isa = PBXBuildFile; fileRef = DD838CC923E9692900F2F688 /* GPPSimulateIDFA.m */; };
+		DD838CCF23E9692900F2F688 /* KKPromotion.m in Sources */ = {isa = PBXBuildFile; fileRef = DD838CCA23E9692900F2F688 /* KKPromotion.m */; };
+		DD838CD023E9692900F2F688 /* KKPromotionRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = DD838CCB23E9692900F2F688 /* KKPromotionRequest.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,6 +32,13 @@
 		DD838CA123E9441D00F2F688 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DD838CA323E9441D00F2F688 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DD838CA423E9441D00F2F688 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		DD838CC423E9692900F2F688 /* GPPSimulateIDFA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPPSimulateIDFA.h; sourceTree = "<group>"; };
+		DD838CC523E9692900F2F688 /* CommonCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonCode.h; sourceTree = "<group>"; };
+		DD838CC623E9692900F2F688 /* KKPromotion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KKPromotion.h; sourceTree = "<group>"; };
+		DD838CC823E9692900F2F688 /* KKPromotionRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KKPromotionRequest.h; sourceTree = "<group>"; };
+		DD838CC923E9692900F2F688 /* GPPSimulateIDFA.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPPSimulateIDFA.m; sourceTree = "<group>"; };
+		DD838CCA23E9692900F2F688 /* KKPromotion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KKPromotion.m; sourceTree = "<group>"; };
+		DD838CCB23E9692900F2F688 /* KKPromotionRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KKPromotionRequest.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +55,7 @@
 		DD838C8623E9441900F2F688 = {
 			isa = PBXGroup;
 			children = (
+				DD838CC223E9692900F2F688 /* Source */,
 				DD838C9123E9441900F2F688 /* KKPromotion-Objective-C */,
 				DD838C9023E9441900F2F688 /* Products */,
 			);
@@ -74,6 +85,37 @@
 				DD838CA423E9441D00F2F688 /* main.m */,
 			);
 			path = "KKPromotion-Objective-C";
+			sourceTree = "<group>";
+		};
+		DD838CC223E9692900F2F688 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				DD838CC323E9692900F2F688 /* Classes */,
+				DD838CCC23E9692900F2F688 /* Assets */,
+			);
+			name = Source;
+			path = ../../Source;
+			sourceTree = "<group>";
+		};
+		DD838CC323E9692900F2F688 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				DD838CC423E9692900F2F688 /* GPPSimulateIDFA.h */,
+				DD838CC523E9692900F2F688 /* CommonCode.h */,
+				DD838CC623E9692900F2F688 /* KKPromotion.h */,
+				DD838CC823E9692900F2F688 /* KKPromotionRequest.h */,
+				DD838CC923E9692900F2F688 /* GPPSimulateIDFA.m */,
+				DD838CCA23E9692900F2F688 /* KKPromotion.m */,
+				DD838CCB23E9692900F2F688 /* KKPromotionRequest.m */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		DD838CCC23E9692900F2F688 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Assets;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -146,10 +188,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD838CCE23E9692900F2F688 /* GPPSimulateIDFA.m in Sources */,
 				DD838C9A23E9441900F2F688 /* ViewController.m in Sources */,
 				DD838C9423E9441900F2F688 /* AppDelegate.m in Sources */,
 				DD838CA523E9441D00F2F688 /* main.m in Sources */,
+				DD838CD023E9692900F2F688 /* KKPromotionRequest.m in Sources */,
 				DD838C9723E9441900F2F688 /* SceneDelegate.m in Sources */,
+				DD838CCF23E9692900F2F688 /* KKPromotion.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
