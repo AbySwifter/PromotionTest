@@ -88,15 +88,21 @@
 
 #pragma mark - 自推广广告信息请求
 - (void)requestPromotionWithKey:(NSString *)key complete:(PromotionCallback)complete{
-    [self.request requestWithPath:@"/promotion_info" method:PromotionRequestGet parameters:@{@"key": key} completion:^(NSError * _Nullable error, NSData * _Nullable data) {
+    [self.request requestWithPath:@"/promotion_info" method:PromotionRequestGet parameters:@{@"key": key} completion:^(NSError * _Nullable error, id _Nullable responseObject) {
         if (error) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 complete(error, nil);
             });
             return;
         }
-        NSError *jsonSerializationError = nil;
-        NSDictionary* result = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&jsonSerializationError];
+        if (![responseObject isKindOfClass:[NSDictionary class]]) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                NSError* error = [NSError errorWithDomain:@"com.framework.kkPromotion" code:4001 userInfo:@{NSLocalizedDescriptionKey: @"返回数据解析类型有误"}];
+                complete(error, nil);
+            });
+            return;
+        }
+        NSDictionary* result = responseObject;
         NSNumber* number = [result objectForKey:@"code"];
         if ([number integerValue] == 200) {
             NSDictionary* resultDic = [result objectForKey:@"data"];
@@ -157,14 +163,17 @@
 }
 
 - (void)setUserLevel:(NSInteger)level{
-    [self.request requestWithPath:@"/update_device_info" method:PromotionRequestPost parameters:@{@"user_level": @(level)} completion:^(NSError * _Nullable error, NSData * _Nullable data) {
+    [self.request requestWithPath:@"/update_device_info" method:PromotionRequestPost parameters:@{@"user_level": @(level)} completion:^(NSError * _Nullable error, id _Nullable responseObject) {
         //        @strongify(self)
         if (error) {
             NSLog(@"网络请求错误");
             return;
         }
-        NSError *jsonSerializationError = nil;
-        NSDictionary* result = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&jsonSerializationError];
+        if (![responseObject isKindOfClass:[NSDictionary class]]) {
+            NSLog(@"------ 上传用户等级失败");
+            return;
+        }
+        NSDictionary* result = responseObject;
         NSNumber* number = [result objectForKey:@"code"];
         if ([number integerValue] == 200) {
             NSLog(@"------ 上传用户等级成功");
@@ -175,14 +184,17 @@
 }
 
 - (void)setUserPayState:(BOOL)isPay{
-    [self.request requestWithPath:@"/update_device_info" method:PromotionRequestPost parameters:@{@"user_pay_state": @(isPay)} completion:^(NSError * _Nullable error, NSData * _Nullable data) {
+    [self.request requestWithPath:@"/update_device_info" method:PromotionRequestPost parameters:@{@"user_pay_state": @(isPay)} completion:^(NSError * _Nullable error, id _Nullable responseObject) {
         //        @strongify(self)
         if (error) {
             NSLog(@"网络请求错误");
             return;
         }
-        NSError *jsonSerializationError = nil;
-        NSDictionary* result = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&jsonSerializationError];
+        if (![responseObject isKindOfClass:[NSDictionary class]]) {
+            
+            return;
+        }
+        NSDictionary* result = responseObject;
         NSNumber* number = [result objectForKey:@"code"];
         if ([number integerValue] == 200) {
             NSLog(@"------ 上传用户购买信息成功");
@@ -193,14 +205,17 @@
 }
 
 - (void)updateOtherInfo:(NSDictionary<NSString *, id> *)otherInfo{
-    [self.request requestWithPath:@"/update_device_info" method:PromotionRequestPost parameters:@{@"other_info": otherInfo} completion:^(NSError * _Nullable error, NSData * _Nullable data) {
+    [self.request requestWithPath:@"/update_device_info" method:PromotionRequestPost parameters:@{@"other_info": otherInfo} completion:^(NSError * _Nullable error, id _Nullable responseObject) {
         //        @strongify(self)
         if (error) {
             NSLog(@"网络请求错误");
             return;
         }
-        NSError *jsonSerializationError = nil;
-        NSDictionary* result = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&jsonSerializationError];
+        if (![responseObject isKindOfClass:[NSDictionary class]]) {
+            NSLog(@"------ 上传其他字段失败");
+            return;
+        }
+        NSDictionary* result = responseObject;
         NSNumber* number = [result objectForKey:@"code"];
         if ([number integerValue] == 200) {
             NSLog(@"------ 上传其他字段成功");
@@ -214,7 +229,7 @@
 - (void)registerDevice {
     @weakify(self)
     // 注册用户
-    [self.request requestWithPath:@"/register" method:PromotionRequestPost parameters:[self getOnceInfo] completion:^(NSError * _Nullable error, NSData * _Nullable data) {
+    [self.request requestWithPath:@"/register" method:PromotionRequestPost parameters:[self getOnceInfo] completion:^(NSError * _Nullable error, id _Nullable responseObject) {
         if (error) {
             NSLog(@"网络请求错误");
             if (self.completion) {
@@ -222,13 +237,14 @@
             }
             return;
         }
-        if (data) {
-            NSError *jsonSerializationError = nil;
-            NSDictionary* result = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&jsonSerializationError];
+        if (responseObject && [responseObject isKindOfClass:[NSDictionary class]]) {
+            NSDictionary* result = responseObject;
             NSDictionary* dataDic = result[@"data"];
             @strongify(self)
             [self saveRegisterInfo:dataDic];
             [self updateDeviceInfo];
+        } else {
+            NSLog(@"网络结果有误");
         }
     }];
 }
@@ -252,39 +268,51 @@
 - (void)updateDeviceInfo {
     @weakify(self)
     // 上报其他信息
-    [self.request requestWithPath:@"/update_device_info" method:PromotionRequestPost parameters:[self getLaunchInfo] completion:^(NSError * _Nullable error, NSData * _Nullable data) {
+    [self.request requestWithPath:@"/update_device_info" method:PromotionRequestPost parameters:[self getLaunchInfo] completion:^(NSError * _Nullable error, id _Nullable responseObject) {
         @strongify(self)
         if (error) {
             NSLog(@"网络请求错误");
             self.completion(NO, self.isFirstRegister);
             return;
         }
-        NSError *jsonSerializationError = nil;
-        NSDictionary* result = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&jsonSerializationError];
-        NSNumber* number = [result objectForKey:@"code"];
-        if ([number integerValue] == 200) {
-            if (self.completion) {
-                self.completion(YES, self.isFirstRegister);
-            }
-        } else {
-            if (self.completion) {
-                self.completion(NO, self.isFirstRegister);
-            }
+        if (![responseObject isKindOfClass:[NSDictionary class]]) {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (self.completion) {
+                    self.completion(NO, self.isFirstRegister);
+                }
+            });
+            return;
         }
+        NSDictionary* result = responseObject;
+        NSNumber* number = [result objectForKey:@"code"];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if ([number integerValue] == 200) {
+                if (self.completion) {
+                    self.completion(YES, self.isFirstRegister);
+                }
+            } else {
+                if (self.completion) {
+                    self.completion(NO, self.isFirstRegister);
+                }
+            }
+        });
     }];
 }
 
 - (void)updatePushTokenInfo:(NSString *)tokenStr{
 //    @weakify(self)
     // 上报其他信息
-    [self.request requestWithPath:@"/update_device_info" method:PromotionRequestPost parameters:@{@"push_token": tokenStr} completion:^(NSError * _Nullable error, NSData * _Nullable data) {
+    [self.request requestWithPath:@"/update_device_info" method:PromotionRequestPost parameters:@{@"push_token": tokenStr} completion:^(NSError * _Nullable error, id _Nullable responseObject) {
 //        @strongify(self)
         if (error) {
             NSLog(@"网络请求错误");
             return;
         }
-        NSError *jsonSerializationError = nil;
-        NSDictionary* result = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&jsonSerializationError];
+        if (![responseObject isKindOfClass:[NSDictionary class]]) {
+            NSLog(@"------ 上传推送令牌失败");
+            return;
+        }
+        NSDictionary* result = responseObject;
         NSNumber* number = [result objectForKey:@"code"];
         if ([number integerValue] == 200) {
             NSLog(@"------ 上传推送令牌成功");

@@ -14,10 +14,27 @@
 		DD838C9F23E9441D00F2F688 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = DD838C9E23E9441D00F2F688 /* Assets.xcassets */; };
 		DD838CA223E9441D00F2F688 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DD838CA023E9441D00F2F688 /* LaunchScreen.storyboard */; };
 		DD838CA523E9441D00F2F688 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DD838CA423E9441D00F2F688 /* main.m */; };
-		DD838CCE23E9692900F2F688 /* GPPSimulateIDFA.m in Sources */ = {isa = PBXBuildFile; fileRef = DD838CC923E9692900F2F688 /* GPPSimulateIDFA.m */; };
-		DD838CCF23E9692900F2F688 /* KKPromotion.m in Sources */ = {isa = PBXBuildFile; fileRef = DD838CCA23E9692900F2F688 /* KKPromotion.m */; };
-		DD838CD023E9692900F2F688 /* KKPromotionRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = DD838CCB23E9692900F2F688 /* KKPromotionRequest.m */; };
+		DD838CD923EA629500F2F688 /* AFNetworking.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD838CD423EA5E0B00F2F688 /* AFNetworking.framework */; };
+		DD838CDA23EA629500F2F688 /* AFNetworking.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = DD838CD423EA5E0B00F2F688 /* AFNetworking.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		DD838CEB23EA63CC00F2F688 /* .gitkeep in Resources */ = {isa = PBXBuildFile; fileRef = DD838CE523EA63CC00F2F688 /* .gitkeep */; };
+		DD838CEC23EA63CC00F2F688 /* GPPSimulateIDFA.m in Sources */ = {isa = PBXBuildFile; fileRef = DD838CE723EA63CC00F2F688 /* GPPSimulateIDFA.m */; };
+		DD838CED23EA63CC00F2F688 /* KKPromotion.m in Sources */ = {isa = PBXBuildFile; fileRef = DD838CE823EA63CC00F2F688 /* KKPromotion.m */; };
+		DD838CEE23EA63CC00F2F688 /* KKPromotionRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = DD838CE923EA63CC00F2F688 /* KKPromotionRequest.m */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		DD838CDB23EA629500F2F688 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				DD838CDA23EA629500F2F688 /* AFNetworking.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		DD838C8F23E9441900F2F688 /* KKPromotion-Objective-C.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "KKPromotion-Objective-C.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -32,13 +49,15 @@
 		DD838CA123E9441D00F2F688 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		DD838CA323E9441D00F2F688 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DD838CA423E9441D00F2F688 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		DD838CC423E9692900F2F688 /* GPPSimulateIDFA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPPSimulateIDFA.h; sourceTree = "<group>"; };
-		DD838CC523E9692900F2F688 /* CommonCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonCode.h; sourceTree = "<group>"; };
-		DD838CC623E9692900F2F688 /* KKPromotion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KKPromotion.h; sourceTree = "<group>"; };
-		DD838CC823E9692900F2F688 /* KKPromotionRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KKPromotionRequest.h; sourceTree = "<group>"; };
-		DD838CC923E9692900F2F688 /* GPPSimulateIDFA.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPPSimulateIDFA.m; sourceTree = "<group>"; };
-		DD838CCA23E9692900F2F688 /* KKPromotion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KKPromotion.m; sourceTree = "<group>"; };
-		DD838CCB23E9692900F2F688 /* KKPromotionRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KKPromotionRequest.m; sourceTree = "<group>"; };
+		DD838CD423EA5E0B00F2F688 /* AFNetworking.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AFNetworking.framework; path = ../../Carthage/Build/iOS/AFNetworking.framework; sourceTree = "<group>"; };
+		DD838CE223EA63CC00F2F688 /* GPPSimulateIDFA.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GPPSimulateIDFA.h; sourceTree = "<group>"; };
+		DD838CE323EA63CC00F2F688 /* CommonCode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommonCode.h; sourceTree = "<group>"; };
+		DD838CE423EA63CC00F2F688 /* KKPromotion.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KKPromotion.h; sourceTree = "<group>"; };
+		DD838CE523EA63CC00F2F688 /* .gitkeep */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = .gitkeep; sourceTree = "<group>"; };
+		DD838CE623EA63CC00F2F688 /* KKPromotionRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KKPromotionRequest.h; sourceTree = "<group>"; };
+		DD838CE723EA63CC00F2F688 /* GPPSimulateIDFA.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GPPSimulateIDFA.m; sourceTree = "<group>"; };
+		DD838CE823EA63CC00F2F688 /* KKPromotion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KKPromotion.m; sourceTree = "<group>"; };
+		DD838CE923EA63CC00F2F688 /* KKPromotionRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KKPromotionRequest.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,6 +65,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DD838CD923EA629500F2F688 /* AFNetworking.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -55,9 +75,10 @@
 		DD838C8623E9441900F2F688 = {
 			isa = PBXGroup;
 			children = (
-				DD838CC223E9692900F2F688 /* Source */,
+				DD838CE023EA63CC00F2F688 /* Source */,
 				DD838C9123E9441900F2F688 /* KKPromotion-Objective-C */,
 				DD838C9023E9441900F2F688 /* Products */,
+				DD838CD323EA5E0B00F2F688 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -87,31 +108,40 @@
 			path = "KKPromotion-Objective-C";
 			sourceTree = "<group>";
 		};
-		DD838CC223E9692900F2F688 /* Source */ = {
+		DD838CD323EA5E0B00F2F688 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				DD838CC323E9692900F2F688 /* Classes */,
-				DD838CCC23E9692900F2F688 /* Assets */,
+				DD838CD423EA5E0B00F2F688 /* AFNetworking.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DD838CE023EA63CC00F2F688 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				DD838CE123EA63CC00F2F688 /* Classes */,
+				DD838CEA23EA63CC00F2F688 /* Assets */,
 			);
 			name = Source;
 			path = ../../Source;
 			sourceTree = "<group>";
 		};
-		DD838CC323E9692900F2F688 /* Classes */ = {
+		DD838CE123EA63CC00F2F688 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				DD838CC423E9692900F2F688 /* GPPSimulateIDFA.h */,
-				DD838CC523E9692900F2F688 /* CommonCode.h */,
-				DD838CC623E9692900F2F688 /* KKPromotion.h */,
-				DD838CC823E9692900F2F688 /* KKPromotionRequest.h */,
-				DD838CC923E9692900F2F688 /* GPPSimulateIDFA.m */,
-				DD838CCA23E9692900F2F688 /* KKPromotion.m */,
-				DD838CCB23E9692900F2F688 /* KKPromotionRequest.m */,
+				DD838CE223EA63CC00F2F688 /* GPPSimulateIDFA.h */,
+				DD838CE323EA63CC00F2F688 /* CommonCode.h */,
+				DD838CE423EA63CC00F2F688 /* KKPromotion.h */,
+				DD838CE523EA63CC00F2F688 /* .gitkeep */,
+				DD838CE623EA63CC00F2F688 /* KKPromotionRequest.h */,
+				DD838CE723EA63CC00F2F688 /* GPPSimulateIDFA.m */,
+				DD838CE823EA63CC00F2F688 /* KKPromotion.m */,
+				DD838CE923EA63CC00F2F688 /* KKPromotionRequest.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
 		};
-		DD838CCC23E9692900F2F688 /* Assets */ = {
+		DD838CEA23EA63CC00F2F688 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
 			);
@@ -128,6 +158,7 @@
 				DD838C8B23E9441900F2F688 /* Sources */,
 				DD838C8C23E9441900F2F688 /* Frameworks */,
 				DD838C8D23E9441900F2F688 /* Resources */,
+				DD838CDB23EA629500F2F688 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -178,6 +209,7 @@
 				DD838CA223E9441D00F2F688 /* LaunchScreen.storyboard in Resources */,
 				DD838C9F23E9441D00F2F688 /* Assets.xcassets in Resources */,
 				DD838C9D23E9441900F2F688 /* Main.storyboard in Resources */,
+				DD838CEB23EA63CC00F2F688 /* .gitkeep in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -188,13 +220,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DD838CCE23E9692900F2F688 /* GPPSimulateIDFA.m in Sources */,
+				DD838CEC23EA63CC00F2F688 /* GPPSimulateIDFA.m in Sources */,
 				DD838C9A23E9441900F2F688 /* ViewController.m in Sources */,
 				DD838C9423E9441900F2F688 /* AppDelegate.m in Sources */,
 				DD838CA523E9441D00F2F688 /* main.m in Sources */,
-				DD838CD023E9692900F2F688 /* KKPromotionRequest.m in Sources */,
+				DD838CEE23EA63CC00F2F688 /* KKPromotionRequest.m in Sources */,
 				DD838C9723E9441900F2F688 /* SceneDelegate.m in Sources */,
-				DD838CCF23E9692900F2F688 /* KKPromotion.m in Sources */,
+				DD838CED23EA63CC00F2F688 /* KKPromotion.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -335,6 +367,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../../Carthage/Build/iOS";
 				INFOPLIST_FILE = "KKPromotion-Objective-C/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -352,6 +385,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../../Carthage/Build/iOS";
 				INFOPLIST_FILE = "KKPromotion-Objective-C/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (

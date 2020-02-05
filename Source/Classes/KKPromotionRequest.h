@@ -13,7 +13,7 @@ typedef enum : NSUInteger {
     PromotionRequestDelete,
 } PromotionRequestMethod;
 
-typedef void(^RequestCallBack)( NSError * _Nullable error,  NSData * _Nullable data);
+typedef void(^RequestCallBack)( NSError * _Nullable error,  id _Nullable responseObject);
 
 NS_ASSUME_NONNULL_BEGIN
 

@@ -54,6 +54,7 @@
 		DD838C6E23E9414600F2F688 /* KKPromotion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KKPromotion.m; sourceTree = "<group>"; };
 		DD838C6F23E9414600F2F688 /* KKPromotionRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KKPromotionRequest.m; sourceTree = "<group>"; };
 		DD838CBB23E9444300F2F688 /* KKPromotion-Objective-C.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = "KKPromotion-Objective-C.xcodeproj"; sourceTree = "<group>"; };
+		DD838CD223EA52C700F2F688 /* Cartfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,8 +79,8 @@
 		DD838C3E23E93FCA00F2F688 = {
 			isa = PBXGroup;
 			children = (
-				DD838CAB23E9444300F2F688 /* examples */,
 				DD838C4523E9409A00F2F688 /* Development */,
+				DD838CAB23E9444300F2F688 /* examples */,
 				DD838C6623E9414600F2F688 /* Source */,
 				DD838C5023E940D600F2F688 /* KKPromotion */,
 				DD838C5B23E940D600F2F688 /* KKPromotionTests */,
@@ -91,6 +92,7 @@
 			isa = PBXGroup;
 			children = (
 				DD838C4723E940AB00F2F688 /* KKPromotion.podspec */,
+				DD838CD223EA52C700F2F688 /* Cartfile */,
 				DD838C4623E940AA00F2F688 /* LICENSE */,
 				DD838C4823E940AB00F2F688 /* README.md */,
 			);
@@ -136,12 +138,12 @@
 		DD838C6723E9414600F2F688 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				DD838C6823E9414600F2F688 /* GPPSimulateIDFA.h */,
 				DD838C6923E9414600F2F688 /* CommonCode.h */,
-				DD838C6A23E9414600F2F688 /* KKPromotion.h */,
-				DD838C6C23E9414600F2F688 /* KKPromotionRequest.h */,
+				DD838C6823E9414600F2F688 /* GPPSimulateIDFA.h */,
 				DD838C6D23E9414600F2F688 /* GPPSimulateIDFA.m */,
+				DD838C6A23E9414600F2F688 /* KKPromotion.h */,
 				DD838C6E23E9414600F2F688 /* KKPromotion.m */,
+				DD838C6C23E9414600F2F688 /* KKPromotionRequest.h */,
 				DD838C6F23E9414600F2F688 /* KKPromotionRequest.m */,
 			);
 			path = Classes;
@@ -384,6 +386,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/Carthage/Build/iOS";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -461,6 +464,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/Carthage/Build/iOS";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
