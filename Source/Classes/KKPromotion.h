@@ -16,7 +16,7 @@
 NS_ASSUME_NONNULL_BEGIN
 
 typedef void(^RegisterCallback)(BOOL success, BOOL isFirst);
-typedef void(^PromotionCallback)(NSError * _Nullable error, NSString * _Nullable json);
+typedef void(^PromotionCallback)(NSError * _Nullable error, id _Nullable json);
 
 NS_SWIFT_NAME(Promotion)
 @interface KKPromotion : NSObject

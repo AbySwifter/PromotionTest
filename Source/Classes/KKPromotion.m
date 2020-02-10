@@ -92,6 +92,7 @@
 
 #pragma mark - 自推广广告信息请求
 - (void)requestPromotionWithKey:(NSString *)key complete:(PromotionCallback)complete{
+    
     [self.request requestWithPath:PROMOTION_PATH method:PromotionRequestGet parameters:@{@"key": key} completion:^(NSError * _Nullable error, id _Nullable responseObject) {
         if (error) {
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -109,10 +110,9 @@
         NSDictionary* result = responseObject;
         NSNumber* number = [result objectForKey:@"code"];
         if ([number integerValue] == SUCCESS_CODE) {
-            NSDictionary* resultDic = [result objectForKey:@"data"];
-            NSString* jsonString = [resultDic objectForKey:@"promotion_info"];
+            id resultDic = [result objectForKey:@"data"];
             dispatch_async(dispatch_get_main_queue(), ^{
-                complete(nil, jsonString);
+                complete(nil, resultDic);
             });
         } else {
             NSError *error = [NSError errorWithDomain:@"custom" code:6000 userInfo:@{
@@ -199,7 +199,7 @@
     // 当前设备idfa
     NSString* phoneIdentifier = [KKPromotion getPhoneIdentifier];
     [params setObject:phoneIdentifier forKey:PROMOTION_PHONE_ID_KEY];
-    [params setObject:@(isPay) forKey:@"user_pay_state"];
+    [params setObject:@(isPay ? 1 : 0) forKey:@"user_pay_state"];
     [self.request requestWithPath:UPLOAD_INFO_PATH method:PromotionRequestPost parameters:params completion:^(NSError * _Nullable error, id _Nullable responseObject) {
         //        @strongify(self)
         if (error) {
