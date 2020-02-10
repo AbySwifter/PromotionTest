@@ -13,7 +13,11 @@
 #import <AFNetworking/AFNetworking.h>
 #endif
 
+#if DEBUG_IP
+#define PROMOTION_BASE_URL @"http://192.168.254.203/sdk_api"
+#elif DEBUG
 #define PROMOTION_BASE_URL @"http://rap2api.taobao.org/app/mock/240360"
+#endif
 
 @interface KKPromotionRequest ()
 
@@ -38,7 +42,6 @@
 }
 
 -(void)requestWithPath:(NSString*)path method:(PromotionRequestMethod)method parameters:(NSDictionary *)params completion:(RequestCallBack)callback{
-    
     dispatch_queue_t global = dispatch_get_global_queue(0, 0);
     dispatch_async(global, ^{
         NSString *urlString = [NSString stringWithFormat:@"%@%@", PROMOTION_BASE_URL, path];
@@ -52,7 +55,7 @@
         if (token) {
             [request setValue:token forHTTPHeaderField:@"token"];
         }
-        [request setValue:@"application/json;charset=UTF-8" forHTTPHeaderField:@"Content-Type"];
+        [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
         request = [self requestBySerializingRequest:request params:params];
         NSURLSessionDataTask* task = [self.session dataTaskWithRequest:request completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
             callback(error, responseObject);
@@ -71,14 +74,11 @@
         }
     } else {
         if (params) {
+            NSError* serializationError = nil;
             if ([NSJSONSerialization isValidJSONObject:params]) {
-                NSError *serializationError = nil;
-                NSData *jsonData = [NSJSONSerialization dataWithJSONObject:params options:NSJSONWritingPrettyPrinted error:&serializationError];
+                mutableRequest = [[[AFJSONRequestSerializer serializer] requestBySerializingRequest:request withParameters:params error:&serializationError] mutableCopy];
                 if (serializationError) {
                     NSLog(@"参数数据转化有误：%@",serializationError.localizedFailureReason);
-                } else {
-                    // 设置初始参数
-                    [mutableRequest setHTTPBody:jsonData];
                 }
             } else {
                 NSLog(@"参数有误");

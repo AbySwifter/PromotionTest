@@ -40,4 +40,7 @@
 #endif
 #endif
 
+// 错误码
+#define SUCCESS_CODE 6000
+
 #endif /* CommonCode_h */

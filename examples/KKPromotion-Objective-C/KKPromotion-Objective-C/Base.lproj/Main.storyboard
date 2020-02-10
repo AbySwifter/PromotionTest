@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13122.16" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13104.12"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -9,16 +10,91 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" xcode11CocoaTouchSystemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LeR-rW-DVC">
+                                <rect key="frame" x="107" y="175" width="200" height="50"/>
+                                <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="Mk2-zy-CRN"/>
+                                    <constraint firstAttribute="height" constant="50" id="WTA-S9-yeT"/>
+                                </constraints>
+                                <state key="normal" title="注册接口"/>
+                                <connections>
+                                    <action selector="register:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wrz-MH-qzz"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GvG-Ug-MwZ">
+                                <rect key="frame" x="107" y="298" width="200" height="50"/>
+                                <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="7Go-tU-V9k"/>
+                                    <constraint firstAttribute="width" constant="200" id="fPK-C2-A7V"/>
+                                </constraints>
+                                <state key="normal" title="上传远程推送证书"/>
+                                <connections>
+                                    <action selector="pushtoken:" destination="BYZ-38-t0r" eventType="touchUpInside" id="XRw-iR-vjZ"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="W15-Df-k3m">
+                                <rect key="frame" x="107" y="423" width="200" height="50"/>
+                                <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="A54-mR-k2Y"/>
+                                    <constraint firstAttribute="height" constant="50" id="dpt-yN-Npu"/>
+                                </constraints>
+                                <state key="normal" title="拉取promotion信息"/>
+                                <connections>
+                                    <action selector="getPromotionInfo:" destination="BYZ-38-t0r" eventType="touchUpInside" id="qrS-5b-56b"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Ds-QG-q5G">
+                                <rect key="frame" x="107" y="536" width="200" height="50"/>
+                                <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="BQT-nx-Lua"/>
+                                    <constraint firstAttribute="height" constant="50" id="Wdc-Dj-88l"/>
+                                </constraints>
+                                <state key="normal" title="设置用户付费状态"/>
+                                <connections>
+                                    <action selector="setUserPayState:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jpt-So-zUO"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FrK-N7-IGY">
+                                <rect key="frame" x="107" y="650" width="200" height="50"/>
+                                <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="KDC-LY-rHl"/>
+                                    <constraint firstAttribute="width" constant="200" id="VKI-gg-W30"/>
+                                </constraints>
+                                <state key="normal" title="设置用户等级"/>
+                                <connections>
+                                    <action selector="setUserlevel:" destination="BYZ-38-t0r" eventType="touchUpInside" id="nTh-nl-W3u"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="W15-Df-k3m" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="2xH-YI-zoD"/>
+                            <constraint firstItem="LeR-rW-DVC" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="131" id="4L2-3G-wC5"/>
+                            <constraint firstItem="FrK-N7-IGY" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="JiM-8Z-PMQ"/>
+                            <constraint firstItem="1Ds-QG-q5G" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Jy1-hy-Py1"/>
+                            <constraint firstItem="GvG-Ug-MwZ" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="bHV-aI-0lA"/>
+                            <constraint firstItem="LeR-rW-DVC" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="bVW-YZ-u2A"/>
+                            <constraint firstItem="FrK-N7-IGY" firstAttribute="top" secondItem="1Ds-QG-q5G" secondAttribute="bottom" constant="64" id="dPc-XJ-PwV"/>
+                            <constraint firstItem="W15-Df-k3m" firstAttribute="top" secondItem="GvG-Ug-MwZ" secondAttribute="bottom" constant="75" id="fZv-by-TSc"/>
+                            <constraint firstItem="GvG-Ug-MwZ" firstAttribute="top" secondItem="LeR-rW-DVC" secondAttribute="bottom" constant="73" id="gUp-u1-nR6"/>
+                            <constraint firstItem="1Ds-QG-q5G" firstAttribute="top" secondItem="W15-Df-k3m" secondAttribute="bottom" constant="63" id="vpa-hd-xzW"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="139" y="90"/>
         </scene>
     </scenes>
 </document>

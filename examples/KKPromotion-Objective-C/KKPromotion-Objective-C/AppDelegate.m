@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import "KKPromotion.h"
 
 @interface AppDelegate ()
 
@@ -37,5 +38,8 @@
     // Use this method to release any resources that were specific to the discarded scenes, as they will not return.
 }
 
+-(void)application:(UIApplication *)application didRegisterForRemoteNotificationsWithDeviceToken:(NSData *)deviceToken{
+    [[KKPromotion sharedInstance] updatePushToken:deviceToken];
+}
 
 @end

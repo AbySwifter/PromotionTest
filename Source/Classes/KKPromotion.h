@@ -9,7 +9,7 @@
 
 #define PROMOTION_BUNDLE_ID_KEY @"bundle_id"
 #define PROMOTION_DEVICE_NAME_KEY @"device_info"
-#define PROMOTION_PHONE_ID_KEY @"phone_identifier"
+#define PROMOTION_PHONE_ID_KEY @"device_id"
 
 
 

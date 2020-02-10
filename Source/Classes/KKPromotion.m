@@ -18,6 +18,10 @@
 
 #define PROMOTION_DEBUG_STORE_KEY @"LAST_DEBUG_STATE"
 
+#define REGISTER_PATH @"/api/sdk/register"
+#define UPLOAD_INFO_PATH @"/api/sdk/device/info"
+#define PROMOTION_PATH @"/api/sdk/promotion/self"
+
 @interface KKPromotion ()
 
 @property(nonatomic, strong)NSString *token;
@@ -88,7 +92,7 @@
 
 #pragma mark - 自推广广告信息请求
 - (void)requestPromotionWithKey:(NSString *)key complete:(PromotionCallback)complete{
-    [self.request requestWithPath:@"/promotion_info" method:PromotionRequestGet parameters:@{@"key": key} completion:^(NSError * _Nullable error, id _Nullable responseObject) {
+    [self.request requestWithPath:PROMOTION_PATH method:PromotionRequestGet parameters:@{@"key": key} completion:^(NSError * _Nullable error, id _Nullable responseObject) {
         if (error) {
             dispatch_async(dispatch_get_main_queue(), ^{
                 complete(error, nil);
@@ -104,7 +108,7 @@
         }
         NSDictionary* result = responseObject;
         NSNumber* number = [result objectForKey:@"code"];
-        if ([number integerValue] == 200) {
+        if ([number integerValue] == SUCCESS_CODE) {
             NSDictionary* resultDic = [result objectForKey:@"data"];
             NSString* jsonString = [resultDic objectForKey:@"promotion_info"];
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -163,7 +167,13 @@
 }
 
 - (void)setUserLevel:(NSInteger)level{
-    [self.request requestWithPath:@"/update_device_info" method:PromotionRequestPost parameters:@{@"user_level": @(level)} completion:^(NSError * _Nullable error, id _Nullable responseObject) {
+    // 上报其他信息
+    NSMutableDictionary* params = [NSMutableDictionary dictionaryWithCapacity:2];
+    // 当前设备idfa
+    NSString* phoneIdentifier = [KKPromotion getPhoneIdentifier];
+    [params setObject:phoneIdentifier forKey:PROMOTION_PHONE_ID_KEY];
+    [params setObject:@(level) forKey:@"user_level"];
+    [self.request requestWithPath:UPLOAD_INFO_PATH method:PromotionRequestPost parameters:params completion:^(NSError * _Nullable error, id _Nullable responseObject) {
         //        @strongify(self)
         if (error) {
             NSLog(@"网络请求错误");
@@ -175,7 +185,7 @@
         }
         NSDictionary* result = responseObject;
         NSNumber* number = [result objectForKey:@"code"];
-        if ([number integerValue] == 200) {
+        if ([number integerValue] == SUCCESS_CODE) {
             NSLog(@"------ 上传用户等级成功");
         } else {
             NSLog(@"------ 上传用户等级失败");
@@ -184,19 +194,24 @@
 }
 
 - (void)setUserPayState:(BOOL)isPay{
-    [self.request requestWithPath:@"/update_device_info" method:PromotionRequestPost parameters:@{@"user_pay_state": @(isPay)} completion:^(NSError * _Nullable error, id _Nullable responseObject) {
+    // 上报其他信息
+    NSMutableDictionary* params = [NSMutableDictionary dictionaryWithCapacity:2];
+    // 当前设备idfa
+    NSString* phoneIdentifier = [KKPromotion getPhoneIdentifier];
+    [params setObject:phoneIdentifier forKey:PROMOTION_PHONE_ID_KEY];
+    [params setObject:@(isPay) forKey:@"user_pay_state"];
+    [self.request requestWithPath:UPLOAD_INFO_PATH method:PromotionRequestPost parameters:params completion:^(NSError * _Nullable error, id _Nullable responseObject) {
         //        @strongify(self)
         if (error) {
-            NSLog(@"网络请求错误");
+            NSLog(@"网络请求错误:%@", error.localizedFailureReason);
             return;
         }
         if (![responseObject isKindOfClass:[NSDictionary class]]) {
-            
             return;
         }
         NSDictionary* result = responseObject;
         NSNumber* number = [result objectForKey:@"code"];
-        if ([number integerValue] == 200) {
+        if ([number integerValue] == SUCCESS_CODE) {
             NSLog(@"------ 上传用户购买信息成功");
         } else {
             NSLog(@"------ 上传用户购买信息级失败");
@@ -205,7 +220,7 @@
 }
 
 - (void)updateOtherInfo:(NSDictionary<NSString *, id> *)otherInfo{
-    [self.request requestWithPath:@"/update_device_info" method:PromotionRequestPost parameters:@{@"other_info": otherInfo} completion:^(NSError * _Nullable error, id _Nullable responseObject) {
+    [self.request requestWithPath:UPLOAD_INFO_PATH method:PromotionRequestPost parameters:@{@"other_info": otherInfo} completion:^(NSError * _Nullable error, id _Nullable responseObject) {
         //        @strongify(self)
         if (error) {
             NSLog(@"网络请求错误");
@@ -217,7 +232,7 @@
         }
         NSDictionary* result = responseObject;
         NSNumber* number = [result objectForKey:@"code"];
-        if ([number integerValue] == 200) {
+        if ([number integerValue] == SUCCESS_CODE) {
             NSLog(@"------ 上传其他字段成功");
         } else {
             NSLog(@"------ 上传其他字段失败");
@@ -229,7 +244,7 @@
 - (void)registerDevice {
     @weakify(self)
     // 注册用户
-    [self.request requestWithPath:@"/register" method:PromotionRequestPost parameters:[self getOnceInfo] completion:^(NSError * _Nullable error, id _Nullable responseObject) {
+    [self.request requestWithPath:REGISTER_PATH method:PromotionRequestPost parameters:[self getOnceInfo] completion:^(NSError * _Nullable error, id _Nullable responseObject) {
         if (error) {
             NSLog(@"网络请求错误");
             if (self.completion) {
@@ -268,7 +283,7 @@
 - (void)updateDeviceInfo {
     @weakify(self)
     // 上报其他信息
-    [self.request requestWithPath:@"/update_device_info" method:PromotionRequestPost parameters:[self getLaunchInfo] completion:^(NSError * _Nullable error, id _Nullable responseObject) {
+    [self.request requestWithPath:UPLOAD_INFO_PATH method:PromotionRequestPost parameters:[self getLaunchInfo] completion:^(NSError * _Nullable error, id _Nullable responseObject) {
         @strongify(self)
         if (error) {
             NSLog(@"网络请求错误");
@@ -286,7 +301,7 @@
         NSDictionary* result = responseObject;
         NSNumber* number = [result objectForKey:@"code"];
         dispatch_async(dispatch_get_main_queue(), ^{
-            if ([number integerValue] == 200) {
+            if ([number integerValue] == SUCCESS_CODE) {
                 if (self.completion) {
                     self.completion(YES, self.isFirstRegister);
                 }
@@ -302,7 +317,12 @@
 - (void)updatePushTokenInfo:(NSString *)tokenStr{
 //    @weakify(self)
     // 上报其他信息
-    [self.request requestWithPath:@"/update_device_info" method:PromotionRequestPost parameters:@{@"push_token": tokenStr} completion:^(NSError * _Nullable error, id _Nullable responseObject) {
+    NSMutableDictionary* params = [NSMutableDictionary dictionaryWithCapacity:2];
+    // 当前设备idfa
+    NSString* phoneIdentifier = [KKPromotion getPhoneIdentifier];
+    [params setObject:phoneIdentifier forKey:PROMOTION_PHONE_ID_KEY];
+    [params setObject:tokenStr forKey:@"push_token"];
+    [self.request requestWithPath:UPLOAD_INFO_PATH method:PromotionRequestPost parameters:params completion:^(NSError * _Nullable error, id _Nullable responseObject) {
 //        @strongify(self)
         if (error) {
             NSLog(@"网络请求错误");
@@ -314,7 +334,7 @@
         }
         NSDictionary* result = responseObject;
         NSNumber* number = [result objectForKey:@"code"];
-        if ([number integerValue] == 200) {
+        if ([number integerValue] == SUCCESS_CODE) {
             NSLog(@"------ 上传推送令牌成功");
         } else {
             NSLog(@"------ 上传推送令牌失败");
@@ -357,6 +377,9 @@
     // 当前系统版本号
     NSString* osVersion = [KKPromotion systemName];
     [params setObject:osVersion forKey:@"os_version"];
+    // 当前设备idfa
+    NSString* phoneIdentifier = [KKPromotion getPhoneIdentifier];
+    [params setObject:phoneIdentifier forKey:PROMOTION_PHONE_ID_KEY];
     return params;
 }
 
@@ -376,7 +399,7 @@
     if (self.appKey) {
         [params setObject:self.appKey forKey:PROMOTION_APP_KEY];
     }
-    [params setObject:@(self.isDebug) forKey:PROMOTION_DEBUG_KEY];
+    [params setObject:@(self.isDebug ? 1 : 0) forKey:PROMOTION_DEBUG_KEY];
     return params;
 }
 
