@@ -1,24 +1,24 @@
 //
-//  UnityBridge.m
+//  PromotionController.m
 //  KKPromotion
 //
 //  Created by aby on 2020/2/10.
 //
 
-#import "UnityBridge.h"
+#import "PromotionController.h"
 #if COCOPODS
 #import <kkPromotion.h>
 #else
 #import "KKPromotion.h"
 #endif
 
-@implementation UnityBridge
+@implementation PromotionController
 
 + (instancetype)instance{
-    static UnityBridge *manager=nil;
+    static PromotionController *manager=nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        manager = [UnityBridge new];
+        manager = [PromotionController new];
     });
     return manager;
 }
@@ -38,10 +38,9 @@
 - (void)promotionLaunch{
     [[KKPromotion sharedInstance] promotionLaunchWithCompletion:^(BOOL success, BOOL isFirst) {
         NSDictionary* result = @{
-            @"registerCallback": @{
-                @"status": @(success),
-                @"isFrist": @(isFirst)
-            }
+            @"key": @"registerCallback",
+            @"status": [NSString stringWithFormat:@"%d", success],
+            @"data": [NSString stringWithFormat:@"%d", isFirst]
         };
         NSString* resultString = [self dictionaryToJson:result];
         [self sendMessage:resultString];
@@ -74,10 +73,9 @@
             }
         }
         NSDictionary* result = @{
-            @"promotionParams": @{
-                @"error": errorString,
-                @"json": jsonString
-            }
+            @"key": @"promotionParams",
+            @"status": errorString,
+            @"data": jsonString
         };
         [self sendMessage:[self dictionaryToJson:result]];
     }];
@@ -108,24 +106,24 @@
 extern "C"{
     void setAPPKey(char *appkey) {
         NSString* appkeyString = [NSString stringWithUTF8String:appkey];
-        [[UnityBridge instance] setAppKey:appkeyString];
+        [[PromotionController instance] setAppKey:appkeyString];
     }
     
     void launchAndRegister() {
-        [[UnityBridge instance] promotionLaunch];
+        [[PromotionController instance] promotionLaunch];
     }
     
     void setUserPayState(bool isPay) {
-        [[UnityBridge instance] setUserPayState:isPay];
+        [[PromotionController instance] setUserPayState:isPay];
     }
 
     void setUserLevel(int level) {
-        [[UnityBridge instance] setUserLevel:level];
+        [[PromotionController instance] setUserLevel:level];
     }
 
     void requestPromotion(char *key) {
         NSString* keyString = [NSString stringWithUTF8String:key];
-        [[UnityBridge instance] requestPromotionWithKey:keyString];
+        [[PromotionController instance] requestPromotionWithKey:keyString];
     }
 }
 
