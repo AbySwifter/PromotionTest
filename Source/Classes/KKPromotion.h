@@ -11,8 +11,6 @@
 #define PROMOTION_DEVICE_NAME_KEY @"device_info"
 #define PROMOTION_PHONE_ID_KEY @"device_id"
 
-
-
 NS_ASSUME_NONNULL_BEGIN
 
 typedef void(^RegisterCallback)(BOOL success, BOOL isFirst);
