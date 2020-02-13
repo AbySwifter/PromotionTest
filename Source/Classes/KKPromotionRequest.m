@@ -13,7 +13,7 @@
 #import <AFNetworking/AFNetworking.h>
 #endif
 
-#define PROMOTION_BASE_URL @"http://39.105.245.41:8080/"
+#define PROMOTION_BASE_URL @"http://39.105.245.41:8080"
 
 @interface KKPromotionRequest ()
 
