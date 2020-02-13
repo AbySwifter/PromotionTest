@@ -13,11 +13,7 @@
 #import <AFNetworking/AFNetworking.h>
 #endif
 
-#if DEBUG_IP
 #define PROMOTION_BASE_URL @"http://39.105.245.41:8080/"
-#elif DEBUG
-#define PROMOTION_BASE_URL @"http://rap2api.taobao.org/app/mock/240360"
-#endif
 
 @interface KKPromotionRequest ()
 
