@@ -115,12 +115,12 @@
                 complete(nil, resultDic);
             });
         } else {
-            NSError *error = [NSError errorWithDomain:@"custom" code:6000 userInfo:@{
-                NSLocalizedDescriptionKey: [result objectForKey:@"message"] ? [result objectForKey:@"message"] : @"未知错误"
-            }];
-            dispatch_async(dispatch_get_main_queue(), ^{
-                complete(error, nil);
-            });
+           NSError *error = [NSError errorWithDomain:@"custom" code:[number integerValue] userInfo:@{
+               NSLocalizedDescriptionKey: [result objectForKey:@"msg"] ? [result objectForKey:@"msg"] : @"网络请求成功，没有解析到配置数据"
+           }];
+           dispatch_async(dispatch_get_main_queue(), ^{
+               complete(error, nil);
+           });
         }
     }];
 }
