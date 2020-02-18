@@ -7,6 +7,8 @@
 
 #import "KKPromotionRequest.h"
 #import "KKPromotion.h"
+#import "PromotionTool.h"
+#import "CommonCode.h"
 #if COCOPODS
 #import <AFNetworking.h>
 #else
@@ -37,7 +39,7 @@
     return _session;
 }
 
--(void)requestWithPath:(NSString*)path method:(PromotionRequestMethod)method parameters:(NSDictionary *)params completion:(RequestCallBack)callback{
+-(void)requestWithPath:(NSString*)path method:(PromotionRequestMethod)method urlParams:(NSDictionary * _Nullable)urlParams parameters:(NSDictionary *)params completion:(RequestCallBack)callback{
     dispatch_queue_t global = dispatch_get_global_queue(0, 0);
     dispatch_async(global, ^{
         NSString *urlString = [NSString stringWithFormat:@"%@%@", PROMOTION_BASE_URL, path];
@@ -49,10 +51,10 @@
         request.HTTPMethod = [self methodString:method];
         NSString *token = [[KKPromotion sharedInstance] currentToken];
         if (token) {
-            [request setValue:token forHTTPHeaderField:@"token"];
+            [request setValue:token forHTTPHeaderField:@"Authorization"];
         }
         [request setValue:@"application/json" forHTTPHeaderField:@"Content-Type"];
-        request = [self requestBySerializingRequest:request params:params];
+        request = [self requestBySerializingRequest:request urlParams:urlParams params:params needConstants:![path isEqualToString:PROMOTION_LOGIN]];
         NSURLSessionDataTask* task = [self.session dataTaskWithRequest:request completionHandler:^(NSURLResponse * _Nonnull response, id  _Nullable responseObject, NSError * _Nullable error) {
             callback(error, responseObject);
         }];
@@ -60,19 +62,35 @@
     });
 }
 
-- (NSMutableURLRequest *)requestBySerializingRequest:(NSMutableURLRequest *)request params:(NSDictionary *)params{
+-(void)requestWithPath:(NSString*)path method:(PromotionRequestMethod)method parameters:(NSDictionary *)params completion:(RequestCallBack)callback{
+    [self requestWithPath:path method:method urlParams:nil parameters:params completion:callback];
+}
+
+- (NSMutableURLRequest *)requestBySerializingRequest:(NSMutableURLRequest *)request urlParams:(NSDictionary*)urlParams params:(NSDictionary *)params needConstants:(BOOL)isNeed{
     NSMutableURLRequest *mutableRequest = [request mutableCopy];
+    NSMutableDictionary* targetUrlParams = [self urlConstantsParams];
+    if (urlParams) {
+        [targetUrlParams addEntriesFromDictionary:urlParams];
+    }
     if ([self.HTTPMethodsEncodingParametersInURI containsObject:[request.HTTPMethod uppercaseString]]) {
         NSString *query = nil;
+        [targetUrlParams addEntriesFromDictionary:params];
         query = AFQueryStringFromParameters(params);
         if (query && query.length > 0) {
             mutableRequest.URL = [NSURL URLWithString:[[mutableRequest.URL absoluteString] stringByAppendingFormat:mutableRequest.URL.query ? @"&%@" : @"?%@", query]];
         }
     } else {
+        if (targetUrlParams) {
+            NSString* query = nil;
+            query = AFQueryStringFromParameters(targetUrlParams);
+            if (query && query.length > 0) {
+                mutableRequest.URL = [NSURL URLWithString:[[mutableRequest.URL absoluteString] stringByAppendingFormat:mutableRequest.URL.query ? @"&%@" : @"?%@", query]];
+            }
+        }
         if (params) {
             NSError* serializationError = nil;
             if ([NSJSONSerialization isValidJSONObject:params]) {
-                mutableRequest = [[[AFJSONRequestSerializer serializer] requestBySerializingRequest:request withParameters:params error:&serializationError] mutableCopy];
+                mutableRequest = [[[AFJSONRequestSerializer serializer] requestBySerializingRequest:mutableRequest withParameters:params error:&serializationError] mutableCopy];
                 if (serializationError) {
                     NSLog(@"参数数据转化有误：%@",serializationError.localizedFailureReason);
                 }
@@ -101,6 +119,18 @@
             break;
     }
     return result;
+}
+
+#pragma mark - 固定URL参数
+- (NSMutableDictionary *)urlConstantsParams{
+    NSMutableDictionary* params = [NSMutableDictionary dictionary];
+    // 当前国家
+    NSString* country = [PromotionTool getCountryName];
+    [params setObject:country forKey:@"country"];
+    // 当前语言
+    NSString* language = [PromotionTool getPreferredLanguage];
+    [params setObject:language forKey:@"language"];
+    return params;
 }
 
 @end

@@ -20,6 +20,7 @@
 		DD838CEC23EA63CC00F2F688 /* GPPSimulateIDFA.m in Sources */ = {isa = PBXBuildFile; fileRef = DD838CE723EA63CC00F2F688 /* GPPSimulateIDFA.m */; };
 		DD838CED23EA63CC00F2F688 /* KKPromotion.m in Sources */ = {isa = PBXBuildFile; fileRef = DD838CE823EA63CC00F2F688 /* KKPromotion.m */; };
 		DD838CEE23EA63CC00F2F688 /* KKPromotionRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = DD838CE923EA63CC00F2F688 /* KKPromotionRequest.m */; };
+		DDE7730623FBC27E005A1CA0 /* PromotionTool.m in Sources */ = {isa = PBXBuildFile; fileRef = DDE7730423FBC27D005A1CA0 /* PromotionTool.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -59,6 +60,8 @@
 		DD838CE823EA63CC00F2F688 /* KKPromotion.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KKPromotion.m; sourceTree = "<group>"; };
 		DD838CE923EA63CC00F2F688 /* KKPromotionRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KKPromotionRequest.m; sourceTree = "<group>"; };
 		DDD069A323F125B40009FCF1 /* KKPromotion-Objective-C.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "KKPromotion-Objective-C.entitlements"; sourceTree = "<group>"; };
+		DDE7730423FBC27D005A1CA0 /* PromotionTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PromotionTool.m; sourceTree = "<group>"; };
+		DDE7730523FBC27E005A1CA0 /* PromotionTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PromotionTool.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,14 +134,16 @@
 		DD838CE123EA63CC00F2F688 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				DD838CE223EA63CC00F2F688 /* GPPSimulateIDFA.h */,
-				DD838CE323EA63CC00F2F688 /* CommonCode.h */,
-				DD838CE423EA63CC00F2F688 /* KKPromotion.h */,
 				DD838CE523EA63CC00F2F688 /* .gitkeep */,
-				DD838CE623EA63CC00F2F688 /* KKPromotionRequest.h */,
+				DD838CE323EA63CC00F2F688 /* CommonCode.h */,
+				DD838CE223EA63CC00F2F688 /* GPPSimulateIDFA.h */,
 				DD838CE723EA63CC00F2F688 /* GPPSimulateIDFA.m */,
+				DD838CE423EA63CC00F2F688 /* KKPromotion.h */,
 				DD838CE823EA63CC00F2F688 /* KKPromotion.m */,
+				DD838CE623EA63CC00F2F688 /* KKPromotionRequest.h */,
 				DD838CE923EA63CC00F2F688 /* KKPromotionRequest.m */,
+				DDE7730523FBC27E005A1CA0 /* PromotionTool.h */,
+				DDE7730423FBC27D005A1CA0 /* PromotionTool.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -229,6 +234,7 @@
 				DD838CEE23EA63CC00F2F688 /* KKPromotionRequest.m in Sources */,
 				DD838C9723E9441900F2F688 /* SceneDelegate.m in Sources */,
 				DD838CED23EA63CC00F2F688 /* KKPromotion.m in Sources */,
+				DDE7730623FBC27E005A1CA0 /* PromotionTool.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

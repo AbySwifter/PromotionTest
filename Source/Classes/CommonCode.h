@@ -43,4 +43,20 @@
 // 错误码
 #define SUCCESS_CODE 6000
 
+#define PROMOTION_PHONE_ID_KEY @"device_id"
+#define PROMOTION_BUNDLE_ID_KEY @"bundle_id"
+#define PROMOTION_DEVICE_NAME_KEY @"device_info"
+
+#define PROMOTION_TOKEN_KEY @"PROMOTION_TOKEN_KEY"
+#define PROMOTION_TOKEN_EXPIRED_KEY @"TOKEN_EXPIRED_KEY"
+#define PROMOTION_APP_KEY @"app_key"
+#define PROMOTION_DEBUG_KEY @"debug"
+
+#define PROMOTION_DEBUG_STORE_KEY @"LAST_DEBUG_STATE"
+
+#define PROMOTION_LOGIN @"/login/binding"
+#define REGISTER_PATH @"/limit/api/sdk/register"
+#define UPLOAD_INFO_PATH @"/limit/api/sdk/device/info"
+#define PROMOTION_PATH @"/limit/api/sdk/promotion/self"
+
 #endif /* CommonCode_h */

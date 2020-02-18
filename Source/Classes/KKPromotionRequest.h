@@ -20,6 +20,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface KKPromotionRequest : NSObject
 
 -(void)requestWithPath:(NSString*)path method:(PromotionRequestMethod)method parameters:(NSDictionary *)params completion:(RequestCallBack)callback;
+-(void)requestWithPath:(NSString*)path method:(PromotionRequestMethod)method urlParams:(NSDictionary * _Nullable)urlParams parameters:(NSDictionary *)params completion:(RequestCallBack)callback;
 @end
 
 NS_ASSUME_NONNULL_END

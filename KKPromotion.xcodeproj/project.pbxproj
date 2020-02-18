@@ -19,6 +19,8 @@
 		DD838C7923E9414600F2F688 /* KKPromotionRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = DD838C6F23E9414600F2F688 /* KKPromotionRequest.m */; };
 		DDD069A823F158140009FCF1 /* PromotionController.mm in Sources */ = {isa = PBXBuildFile; fileRef = DDD069A723F157A50009FCF1 /* PromotionController.mm */; };
 		DDD069A923F158170009FCF1 /* PromotionController.h in Headers */ = {isa = PBXBuildFile; fileRef = DDD069A623F157A50009FCF1 /* PromotionController.h */; };
+		DDE7730123FBC074005A1CA0 /* PromotionTool.h in Headers */ = {isa = PBXBuildFile; fileRef = DDE772FF23FBC074005A1CA0 /* PromotionTool.h */; };
+		DDE7730223FBC074005A1CA0 /* PromotionTool.m in Sources */ = {isa = PBXBuildFile; fileRef = DDE7730023FBC074005A1CA0 /* PromotionTool.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +61,8 @@
 		DD838CD223EA52C700F2F688 /* Cartfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Cartfile; sourceTree = "<group>"; };
 		DDD069A623F157A50009FCF1 /* PromotionController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PromotionController.h; sourceTree = "<group>"; };
 		DDD069A723F157A50009FCF1 /* PromotionController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = PromotionController.mm; sourceTree = "<group>"; };
+		DDE772FF23FBC074005A1CA0 /* PromotionTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PromotionTool.h; sourceTree = "<group>"; };
+		DDE7730023FBC074005A1CA0 /* PromotionTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PromotionTool.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +150,8 @@
 				DD838C6923E9414600F2F688 /* CommonCode.h */,
 				DD838C6823E9414600F2F688 /* GPPSimulateIDFA.h */,
 				DD838C6D23E9414600F2F688 /* GPPSimulateIDFA.m */,
+				DDE772FF23FBC074005A1CA0 /* PromotionTool.h */,
+				DDE7730023FBC074005A1CA0 /* PromotionTool.m */,
 				DD838C6A23E9414600F2F688 /* KKPromotion.h */,
 				DD838C6E23E9414600F2F688 /* KKPromotion.m */,
 				DD838C6C23E9414600F2F688 /* KKPromotionRequest.h */,
@@ -204,6 +210,7 @@
 				DD838C7623E9414600F2F688 /* KKPromotionRequest.h in Headers */,
 				DD838C7423E9414600F2F688 /* KKPromotion.h in Headers */,
 				DD838C7223E9414600F2F688 /* GPPSimulateIDFA.h in Headers */,
+				DDE7730123FBC074005A1CA0 /* PromotionTool.h in Headers */,
 				DDD069A923F158170009FCF1 /* PromotionController.h in Headers */,
 				DD838C5F23E940D600F2F688 /* KKPromotion.h in Headers */,
 				DD838C7323E9414600F2F688 /* CommonCode.h in Headers */,
@@ -322,6 +329,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DDE7730223FBC074005A1CA0 /* PromotionTool.m in Sources */,
 				DDD069A823F158140009FCF1 /* PromotionController.mm in Sources */,
 				DD838C7723E9414600F2F688 /* GPPSimulateIDFA.m in Sources */,
 				DD838C7823E9414600F2F688 /* KKPromotion.m in Sources */,

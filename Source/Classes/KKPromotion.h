@@ -7,9 +7,7 @@
 
 #import <Foundation/Foundation.h>
 
-#define PROMOTION_BUNDLE_ID_KEY @"bundle_id"
-#define PROMOTION_DEVICE_NAME_KEY @"device_info"
-#define PROMOTION_PHONE_ID_KEY @"device_id"
+
 
 NS_ASSUME_NONNULL_BEGIN
 
