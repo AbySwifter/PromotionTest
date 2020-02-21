@@ -276,7 +276,7 @@
             if ([number integerValue] == SUCCESS_CODE) {
                 @strongify(self)
                 [self updateDeviceInfo];
-            } if ([number integerValue] == 8005 ||resultCode == 8009) {
+            } if ([number integerValue] == 8005 ||resultCode == 8009 || resultCode == 8002) {
                 [self getTokenFromRemote];
             }
         } else {
@@ -314,11 +314,14 @@
         }
         NSDictionary* result = responseObject;
         NSNumber* number = [result objectForKey:@"code"];
+        NSInteger resultCode = [number integerValue];
         dispatch_async(dispatch_get_main_queue(), ^{
-            if ([number integerValue] == SUCCESS_CODE) {
+            if (resultCode == SUCCESS_CODE) {
                 if (self.completion) {
                     self.completion(YES, self.isFirstRegister);
                 }
+            } else if (resultCode == 8005 ||resultCode == 8009 || resultCode == 8002) {
+                [self getTokenFromRemote];
             } else {
                 if (self.completion) {
                     self.completion(NO, self.isFirstRegister);

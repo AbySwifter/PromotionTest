@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'KKPromotion'
-  s.version          = '0.1.0-beta2'
+  s.version          = '0.1.1-alpha'
   s.summary          = 'Promotion SDK'
 
 # This description is used to generate tags and improve search results.
